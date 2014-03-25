@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <title>Ruby Review</title>
+    <link rel="stylesheet" type="text/css" href="ruby_review.css" media="screen"/>
+    <body>  
+        <h1>Ruby Review: Proud Moments in Code.</h1>
+       <div>
+        One of the code solutions that I was proud of was the regular expressions challenge. The regular expressions challenges
+        can be very difficult but if you take a step back, work on the solution in rubular www.rubular.com, and make
+        sure that your solution also works in your editor and your console you'll be able to come up with a very clear and
+        concise solution. I tried to make my solutions as dry and concise as possible and believe that I did. Looking back
+        there are still somethings I could do to tweak my solution but I feel that it was an almost perfect solution to a 
+        relatively complicated problem. I followed best practices for readable code, for pseudocode it wasn't perfect but the
+        pseudocode was very clear.</div>
+
+<div class="coder"><pre><div class="coder2">Determine whether a string contains a Social Security number</div>
+    def has_ssn?(string)
+      return true if string.match(/\d{3}-\d{2}-\d{4}/)
+        else 
+      false
+    end
+</pre></div><br>
+<div class="coder"><pre><div class="coder2">Return the Social Security number from a string.</div>
+    def grab_ssn(string)
+      string.match(/\d{3}-\d{2}-\d{4}/).to_s if string.match(/\d{3}-\d{2}-\d{4}/)
+    end</pre></div><br>
+
+<div class="coder"><pre><div class="coder2">Return all of the Social Security numbers from a string.</div>
+    def grab_all_ssns(string)
+      string.scan(/\d{3}-\d{2}-\d{4}/)
+    end</pre></div><br>
+
+<div class="coder"><pre><div class="coder2">Obfuscate all of the Social Security numbers in a string.Example: XXX-XX-4430.</div>
+    def hide_all_ssns(string)
+      string.gsub(/(\d{3})-(\d{2})-(\d{4})/,'XXX-XX-\3') 
+    end</pre></div><br>
+
+<div class="coder"><pre><div class="coder2">Ensure all of the Social Security numbers use dashes for delimiters.Example: 480.01.4430 and 480014430 would both be 480-01-4430.</div>
+    def format_ssns(string)
+      string.gsub(/(\d{3})[^\d]?(\d{2})[^\d]?(\d{4})/,'\1-\2-\3') 
+    end</pre></div><br>
+
+   <div class="coder"><pre><div class="coder2">Test code</div> 
+    p has_ssn?("please don't share this: 234-60-1422") == true  
+    p has_ssn?("please confirm your identity: XXX-XX-1422") == false
+    p grab_ssn("please don't share this: 234-60-1422") == "234-60-1422"
+    p grab_ssn("please confirm your identity: XXX-XX-1422") == nil
+    p grab_all_ssns("234-60-1422, 350-80-0744, 013-60-8762") == ["234-60-1422", "350-80-0744", "013-60-8762"]
+    p grab_all_ssns("please confirm your identity: XXX-XX-1422") == []
+    p grab_all_ssns("234-60-1422, 350-80-0744, 013-60-8762") == ["234-60-1422", "350-80-0744", "013-60-8762"]
+    p grab_all_ssns("please confirm your identity: XXX-XX-1422") == []
+    p hide_all_ssns("234-60-1422, 350-80-0744, 013-60-8762") == "XXX-XX-1422, XXX-XX-0744, XXX-XX-8762"
+    p format_ssns("234601422, 350.80.0744, 013-60-8762") == "234-60-1422, 350-80-0744, 013-60-8762"
+</pre></div>
+      </body> 
+    </head>
+</html>
